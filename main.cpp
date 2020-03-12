@@ -13,9 +13,14 @@
 /* change this definition for the correct port */
 #define MODEMDEVICE "/dev/ttyS0"
 #define _POSIX_SOURCE 1 /* POSIX compliant source */
-
 #define FALSE 0
 #define TRUE 1
+#define HOST "localhost"
+#define USER " bts"
+#define PWD " snir"
+#define BASE "cpateurs"
+
+
 
 volatile int STOP=FALSE; 
 int main()
@@ -108,12 +113,12 @@ if ((conn = mysql_init(NULL)) == NULL)
    return EXIT_FAILURE;
 }
 
-if (mysql_real_connect(conn, "192.168.1.29", "bts", "snir", "cpateurs", 0, NULL,0) == NULL)
+if (mysql_real_connect(conn, "localhost", "bts", "snir", "cpateurs", 0, NULL,0) == NULL)
 {
    fprintf(stderr, "DB Connection Error\n");
    return EXIT_FAILURE;
 }
-if (mysql_query(conn, "INSERT INTO capteursSql (Temperature)  VALUES ('12.2')") != 0)
+if (mysql_query(conn, "INSERT INTO capteursSql (Temperature)  VALUES ('12.88')") != 0)
 {
    fprintf(stderr, "Query Failure\n");
    return EXIT_FAILURE;
