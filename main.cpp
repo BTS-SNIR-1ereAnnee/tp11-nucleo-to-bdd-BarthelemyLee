@@ -5,6 +5,8 @@
 #include <termios.h>	// 
 #include <errno.h>
 #include <iostream>
+#include <mariadb/mysql.h>
+
 
 /* baudrate settings are defined in <asm/termbits.h>, which is included by <termios.h> */
 #define BAUDRATE B115200            
@@ -97,15 +99,16 @@ int main()
  
   /* Ne pas oublier de libérer ton file descriptor */
   close(sfd);
- //YSQL *conn;
 
-/*if ((conn = mysql_init(NULL)) == NULL)
+ MYSQL *conn;
+
+if ((conn = mysql_init(NULL)) == NULL)
 {
    fprintf(stderr,"Could not init DB\n");
    return EXIT_FAILURE;
 }
 
-if (mysql_real_connect(conn, "localhost", "user", "passwd", "dbname", 0, NULL,0) == NULL)
+if (mysql_real_connect(conn, "192.168.1.29", "bts", "snir", "cpateurs", 0, NULL,0) == NULL)
 {
    fprintf(stderr, "DB Connection Error\n");
    return EXIT_FAILURE;
@@ -117,7 +120,7 @@ if (mysql_query(conn, "INSERT INTO capteursSql (Temperature)  VALUES ('12.2')") 
 }
 mysql_close(conn);
 return EXIT_SUCCESS;
-*/
+
 
   return 0;
 }
